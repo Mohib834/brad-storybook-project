@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>StoryBook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body>
+
+<nav class="grey darken-3">
+    <div class="container">
+        <div class="nav-wrapper" style="display:flex; justify-content:space-between;">
+            <a href="/stories" class="brand-logo center">StoryBooks</a>
+            <a href="#" class="button-collapse show-on-large" data-activate="main-menu">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul class="right hide-on-small-only">
+                <% if(user) { %>
+                    <li><a href="/dashboard">Welcome <%= user.firstName %></a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/stories"><i class="fa fa-book"></i> Public Stories </a></li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
