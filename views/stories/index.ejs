@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+
+<main>
+    <div class="container">
+        <h1>Stories</h1>
+        <div class="row">
+            <% if(stories) {%>
+                <% stories.forEach(story => { %>
+                    <div class="col s12 m4">
+                        <div class="card">
+                        <% if(user){ %>
+                            <div class="card-image">
+                                <a href="/stories/<%=story._id%>/edit" class="btn-floating halfway-fab red">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                            </div>
+                        <% } %>
+                            <div class="card-content center-align">
+                                <h5><%= story.title %></h5>
+                                <p><%= truncate(story.body, 150) %></p>
+                                <br>
+                                <div class="chip">
+                                    <img src="<%= story.owner.userAvatar %>" alt="Contact Person">
+                                    <%= story.owner.firstName %> <%= story.owner.lastName %> 
+                                </div>
+                            </div>
+                            <div class="card-action center-align">
+                                <a class="btn grey" href="/stories/<%= story._id %>">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p> No stories found </p>
+            <% } %>
+        
+        </div>
+    </div>
+</main>
+
+<% include ../partials/footer %>

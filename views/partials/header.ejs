@@ -7,13 +7,14 @@
     <title>StoryBook</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
 <nav class="grey darken-3">
     <div class="container">
         <div class="nav-wrapper" style="display:flex; justify-content:space-between;">
-            <a href="/stories" class="brand-logo center">StoryBooks</a>
+            <a href="/" class="brand-logo center">StoryBooks</a>
             <a href="#" class="button-collapse show-on-large" data-activate="main-menu">
                 <i class="fa fa-bars"></i>
             </a>
@@ -25,6 +26,18 @@
                     <li><a href="/stories"><i class="fa fa-book"></i> Public Stories </a></li>
                 <% } %>
             </ul>
+            <ul class="sidenav" id="main-menu">
+                <% if(user){ %>
+
+                <% } else { %>
+                    <li>
+                        <a class="btn red darken-1" href="/auth/google">
+                            <i class="fa fa-google"></i>
+                            login with google
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
         </div>
     </div>
-</nav>
+</nav> 
