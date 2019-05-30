@@ -2,7 +2,37 @@
 
 <main>
     <div class="container">
-        <h3> Welcome User: <%= user.firstName %> </h3>
+        <h3> Welcome <%= user.firstName %> </h3>
+        <h4> Your Stories </h4>
+
+        <% if(stories.length !== 0){ %>
+            <table class="striped">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% stories.forEach(story => { %>
+                        <tr>
+                            <td><a href="/stories/<%= story.id %>"><%= story.title %></a></td>
+                            <td><%= formatDate(story.date, 'MMMM do YYYY') %></td>
+                            <td><span style="text-transform:capitalize;"><%= story.status %></span></td>
+                            <td><a class="btn left-align" href="/stories/<%= story.id %>/edit">Edit</a>
+                                <form action="/stories/<%= story.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn red">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p>You have not created any stories yet !</p>
+        <% } %>
     </div>
 </main>
 

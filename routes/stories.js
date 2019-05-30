@@ -9,7 +9,9 @@ router.get('/', async(req, res) => {
         const storiesPublic = await Story.find({
             status:'public'
         }).populate('owner');
+        console.log(storiesPublic);
         res.render('stories/index', { stories: storiesPublic });
+
 
     } catch(e){
         console.log(e);
@@ -20,8 +22,29 @@ router.get('/new', isLoggedIn, (req, res) => {
     res.render('stories/new');
 })
 
-router.get('/:id/edit', (req, res) => {
-    res.render('stories/edit');
+router.get('/:id/edit', async (req, res) => {
+    const _id = req.params.id;
+    const story = await Story.findOne({ _id });
+    
+    res.render('stories/edit', { story });
+})
+
+router.put('/:id', async(req, res) => {
+    const story = await Story.findOne({ _id:req.params.id })
+    let allowComments;
+    if(req.body.allowComments){
+        allowComments = true;
+    } else{
+        allowComments = false;
+    }
+
+    story.title = req.body.title;
+    story.body = req.body.body;
+    story.status = req.body.status;
+    story.allowComments = allowComments;
+
+    await story.save();
+    res.redirect(`/stories/${story.id}`)
 })
 
 router.get('/:id', async (req, res) => {
@@ -58,6 +81,11 @@ router.post('/', async(req, res) => {
     } catch(e){
         console.log(e);
     }
+})
+
+router.delete('/:id', async (req, res) => {
+    await Story.findByIdAndDelete({ _id: req.params.id });
+    res.redirect('/dashboard');
 })
 
 module.exports = router;

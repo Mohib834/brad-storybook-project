@@ -17,7 +17,7 @@
                         <% } %>
                             <div class="card-content center-align">
                                 <h5><%= story.title %></h5>
-                                <p><%= truncate(story.body, 150) %></p>
+                                <p class="story-text"><%= truncate(story.body, 140) %></p>
                                 <br>
                                 <div class="chip">
                                     <img src="<%= story.owner.userAvatar %>" alt="Contact Person">
