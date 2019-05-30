@@ -17,6 +17,7 @@ module.exports = function(passport){
         clientID:keys.googleClientID,
         clientSecret:keys.googleClientSecret,
         callbackURL:'/auth/google/callback',
+        proxy:true,
         passReqToCallback:true
     }, async (req, accessToken, refreshToken, profile, done) => {
         //Find user if exist by google id
