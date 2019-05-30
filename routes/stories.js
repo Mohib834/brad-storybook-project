@@ -9,7 +9,7 @@ router.get('/', async(req, res) => {
         const storiesPublic = await Story.find({
             status:'public'
         }).populate('owner');
-        console.log(storiesPublic);
+        
         res.render('stories/index', { stories: storiesPublic });
 
 
